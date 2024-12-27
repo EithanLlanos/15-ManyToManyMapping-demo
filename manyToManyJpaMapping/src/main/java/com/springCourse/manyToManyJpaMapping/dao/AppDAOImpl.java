@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class AppDAOImpl implements AppDAO{
+public class AppDAOImpl implements AppDAO {
 
     private final EntityManager entityManager;
 
@@ -151,5 +151,17 @@ public class AppDAOImpl implements AppDAO{
         Course theCourse = query.getSingleResult();
         return theCourse;
 
+    }
+
+    @Override
+    public Course findCourseAndStudentsByCourseId(int theId) {
+//        Create query
+        TypedQuery<Course> query = entityManager.createQuery("select c from Course c "
+                + "join fetch c.students "
+                + "where c.id = :data", Course.class);
+        query.setParameter("data", theId);
+//        Execute query
+        Course course = query.getSingleResult();
+        return course;
     }
 }
