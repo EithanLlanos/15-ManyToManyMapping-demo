@@ -20,9 +20,36 @@ public class ManyToManyJpaMappingApplication {
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
 //            createCourseAndStudents(appDAO);
-            findCourseAndStudents(appDAO);
-
+//            findCourseAndStudents(appDAO);
+            findStudentAndCourses(appDAO);
+            addMoreCoursesForStudent(appDAO);
         };
+    }
+
+    private void addMoreCoursesForStudent(AppDAO appDAO) {
+        int theId = 2;
+        Student tempStudent = appDAO.findStudentAndCoursesByStudentId(theId);
+
+//        Create more courses
+        Course tempCourse1 = new Course("How to unlock in");
+        Course tempCourse2 = new Course("How to build a house");
+
+//        add course
+        tempStudent.addCourse(tempCourse1);
+        tempStudent.addCourse(tempCourse2);
+
+        System.out.println("Saving student: " + tempStudent);
+        System.out.println("Associated courses: " + tempStudent.getCourses());
+
+        appDAO.update(tempStudent);
+
+    }
+
+    private void findStudentAndCourses(AppDAO appDAO) {
+        int theId = 2;
+        Student tempStudent = appDAO.findStudentAndCoursesByStudentId(theId);
+        System.out.println("Loaded students: " + tempStudent);
+        System.out.println("Courses: " + tempStudent.getCourses());
     }
 
     private void findCourseAndStudents(AppDAO appDAO) {

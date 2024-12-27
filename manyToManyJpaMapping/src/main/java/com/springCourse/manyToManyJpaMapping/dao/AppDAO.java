@@ -3,6 +3,7 @@ package com.springCourse.manyToManyJpaMapping.dao;
 import com.springCourse.manyToManyJpaMapping.entity.Course;
 import com.springCourse.manyToManyJpaMapping.entity.Instructor;
 import com.springCourse.manyToManyJpaMapping.entity.InstructorDetail;
+import com.springCourse.manyToManyJpaMapping.entity.Student;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,4 +39,7 @@ public interface AppDAO {
 
     Course findCourseAndStudentsByCourseId(int theId);
 
+    Student findStudentAndCoursesByStudentId(int theId);
+
+    void update(Student tempStudent);
 }
