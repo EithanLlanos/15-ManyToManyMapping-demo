@@ -21,9 +21,17 @@ public class ManyToManyJpaMappingApplication {
         return runner -> {
 //            createCourseAndStudents(appDAO);
 //            findCourseAndStudents(appDAO);
-            findStudentAndCourses(appDAO);
-            addMoreCoursesForStudent(appDAO);
+//            findStudentAndCourses(appDAO);
+//            addMoreCoursesForStudent(appDAO);
+//            deleteCourse(appDAO);
+            deleteStudentById(appDAO);
         };
+    }
+
+    private void deleteStudentById(AppDAO appDAO) {
+        int theId = 1;
+
+        appDAO.deleteStudentById(theId);
     }
 
     private void addMoreCoursesForStudent(AppDAO appDAO) {
@@ -109,7 +117,7 @@ public class ManyToManyJpaMappingApplication {
     }
 
     private void deleteCourse(AppDAO appDAO) {
-        int theId = 11;
+        int theId = 13;
 //        Find the course
         appDAO.deleteCourseById(theId);
     }
