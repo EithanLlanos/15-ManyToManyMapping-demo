@@ -91,7 +91,7 @@ public class Course {
     }
 
     public void addStudent(Student theStudent) {
-        if (theStudent == null) {
+        if (students == null) {
             students = new ArrayList<>();
         }
         students.add(theStudent);
